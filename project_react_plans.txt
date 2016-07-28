@@ -3,7 +3,7 @@ Project React
 End Product: You are square, avoiding rectangles in arena. You have to survive for 1 minute.
 
 Gameplay Features:
-	square player
+	movable square player
 	triangle enemies
 	1-minute timer
 	collision detection

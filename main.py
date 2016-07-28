@@ -30,7 +30,7 @@ pygame.display.flip()
 
 # game objects
 clock = pygame.time.Clock()
-player = Block(WHITE, 50, 50)
+player = Block(WHITE, 50, 50, 3)
 all_sprites = pygame.sprite.RenderPlain(player)
 
 going = True
@@ -38,31 +38,18 @@ going = True
 while going:
 	clock.tick(60)
 
+	# event handling
 	for event in pygame.event.get():
 		if event.type == QUIT:
 			going = False
 
-		# controls
-		if event.type == pygame.KEYDOWN:
-			if event.key == pygame.K_RIGHT:
-					player.rect.x += 1
+	#controller input
+	player.move(pygame.event.get())
 
-		if event.type == pygame.KEYDOWN:
-			if event.key == pygame.K_LEFT:
-				player.rect.x -= 1
-
-		if event.type == pygame.KEYDOWN:
-			if event.key == pygame.K_UP:
-				player.rect.y -= 1
-
-		if event.type == pygame.KEYDOWN:
-			if event.key == pygame.K_DOWN:
-				player.rect.y += 1
-
-		# updating display
-		screen.blit(background, (0, 0))
-		all_sprites.draw(screen)
-		pygame.display.flip()
+	#updating display
+	screen.blit(background, (0, 0))
+	all_sprites.draw(screen)
+	pygame.display.flip()
 
 pygame.quit()
 
