@@ -19,25 +19,29 @@ class Block(pygame.sprite.Sprite):
 		# Update the position of this object by setting the values of rect.x and rect.y
 		self.rect = self.image.get_rect()
 
-	# Returns what key is pressed.
-	def check_key(self, event_list):
-		for my_event in event_list:
-			if my_event.type == pygame.KEYDOWN:
-				return my_event.key
 
-	def move(self, event_list):
+	def move(self, event):
+		speed = 6
+		if event.type == pygame.KEYDOWN:
+			if event.key == pygame.K_LEFT:
+				self.rect.x -= speed
+				pygame.time.wait(1)
+			if event.key == pygame.K_RIGHT:
+				self.rect.x += speed
+				pygame.time.wait(1)
+			if event.key == pygame.K_DOWN:
+				self.rect.y += speed
+				pygame.time.wait(1)
+			if event.key == pygame.K_UP:
+				self.rect.y -= speed
+				pygame.time.wait(1)
 
-		key_pressed = self.check_key(event_list)
-		key_held = pygame.key.get_pressed()
 
-		if key_held[K_RIGHT] == True:
-			self.rect.x += self.speed
-		if key_held[K_LEFT] == True:
-			self.rect.x -= self.speed
-		if key_held[K_DOWN] == True:
-			self.rect.y += self.speed
-		if key_held[K_UP] == True:
-			self.rect.y -= self.speed
+
+
+
+
+
 
 
 
