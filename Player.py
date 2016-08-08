@@ -25,16 +25,12 @@ class Block(pygame.sprite.Sprite):
 		if event.type == pygame.KEYDOWN:
 			if event.key == pygame.K_LEFT:
 				self.rect.x -= speed
-				pygame.time.wait(1)
 			if event.key == pygame.K_RIGHT:
 				self.rect.x += speed
-				pygame.time.wait(1)
 			if event.key == pygame.K_DOWN:
 				self.rect.y += speed
-				pygame.time.wait(1)
 			if event.key == pygame.K_UP:
 				self.rect.y -= speed
-				pygame.time.wait(1)
 
 
 
