@@ -2,35 +2,45 @@ import pygame
 from pygame.locals import *
 
 
-class Block(pygame.sprite.Sprite):
-	# Constructor. Pass in the color of the block,
-	# and its x and y position
-	def __init__(self, color, width, height, speed):
-		# Call the parent class (Sprite) constructor
-		pygame.sprite.Sprite.__init__(self)
+class Player(pygame.sprite.Sprite):
 
-		# Create an image of the block, and fill it with a color.
-		# This could also be an image loaded from the disk.
+	def __init__(self, color, width, height):
+		pygame.sprite.Sprite.__init__(self)
 		self.image = pygame.Surface([width, height])
 		self.image.fill(color)
-		self.speed = speed
-
-		# Fetch the rectangle object that has the dimensions of the image
-		# Update the position of this object by setting the values of rect.x and rect.y
+		self.speed = 4
+		self.dx = []
+		self.dy = []
 		self.rect = self.image.get_rect()
 
+	def update(self):
+		try:
+			self.rect.x += self.dx[0]  # Index error if the list is empty.
+		except IndexError:
+			self.rect.x += 0
+		try:
+			self.rect.y += self.dy[0]  # Index error if the list is empty.
+		except IndexError:
+			self.rect.y += 0
 
-	def move(self, event):
-		speed = 6
-		if event.type == pygame.KEYDOWN:
-			if event.key == pygame.K_LEFT:
-				self.rect.x -= speed
-			if event.key == pygame.K_RIGHT:
-				self.rect.x += speed
-			if event.key == pygame.K_DOWN:
-				self.rect.y += speed
-			if event.key == pygame.K_UP:
-				self.rect.y -= speed
+	def collision(self):
+		screen = pygame.display.get_surface()
+		# right side
+		if self.rect.x > screen.get_width() - self.image.get_width():
+			self.rect.x -= self.dx[0]
+		# left side
+		if self.rect.x < 0:
+			self.rect.x -= self.dx[0]
+		# bottom side
+		if self.rect.y > screen.get_height() - self.image.get_height():
+			self.rect.y -= self.dy[0]
+		# top side
+		if self.rect.y < 0:
+			self.rect.y -= self.dy[0]
+
+
+
+
 
 
 

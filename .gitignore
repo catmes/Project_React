@@ -91,5 +91,8 @@ ENV/
 # test photos in photos/
 photos/
 
+# image library
+images/
+
 # etc
 .idea/
